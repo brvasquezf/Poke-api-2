@@ -1,27 +1,33 @@
-import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import { Container } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom'
+import pokeMarcador from '../Img/pokemarcador.png'
 
 const NavBar = () => {
 
-    const setActiveClass = () => isActive ? "active" : "no-active";
+    const setActiveClass = ({ isActive }) => isActive ? "active" : "no-active";
 
     return (
-        <div>
-            <Navbar bg="dark" data-bs-theme="dark">
-                <Container>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                    <Navbar.Collapse className='justify-content-end'>
-                        <Nav className='gap-2'>
-                            <Nav.Link className={setActiveClass}>Home</Nav.Link>
-                            <Nav.Link className={setActiveClass}>Pokemones</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
+        <Navbar className='navbar' expand="lg" bg="dark" variant="dark" fixed='top'>
+            <Container>
+                <Navbar.Brand as={NavLink} to="/">
+                    <img className='pokeMarcador' src={pokeMarcador} alt="imagen de marcador de mapa pokemon" />
+                </Navbar.Brand>
+                <Navbar.Collapse className='justify-content-end'>
+                    <Nav className='gap-2 nav-link'>
+                        <NavLink  className={setActiveClass} to="/">
+                            Home
+                        </NavLink>
+                        <NavLink className={setActiveClass} to="/pokemones">
+                            Pokemones
+                        </NavLink>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
 
-                </Container>
-            </Navbar></div >
-    )
-}
+    );
+};
 
-export default Navbar
+export default NavBar
